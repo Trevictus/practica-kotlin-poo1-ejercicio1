@@ -8,30 +8,23 @@ Opcionalmente se puede crear el método toString() para mostrar información sob
 En el programa principal, crear varios rectángulos. Mostarlos y mostrar por pantalla sus áreas y perímetros.
 */
 
-class Rectangulo(var base: Double, var altura: Double){
+class Rectangulo(val base: Double, val altura: Double){
 
     init{
-        if (base <= 0){
-            print("La base del rectángulo es incorrecta.")
-            base = 6.0
-        }
-    }
-    init{
-        if (altura <= 0){
-            print("La altura del rectángulo es incorrecta.")
-            altura = 9.0
-        }
+        require(base > 0){ "La base del rectángulo es incorrecta." }
+        require(altura > 0){ "La altura del rectángulo es incorrecta." }
     }
 
 
-    fun calcularArea(): Double{
-        val area = base * altura
-        return area
-    }
+    fun calcularArea(): Double = base * altura
+  
 
     fun calcularPerimetro(): Double{
         val perimetro = (base * altura) * 2
         return perimetro
     }
 
+    override fun toString(): String {
+        return "El rectángulo de base $base y altura $altura, tiene un area de ${calcularArea()} y un perímetro de ${calcularPerimetro()}"
+    }
 }
